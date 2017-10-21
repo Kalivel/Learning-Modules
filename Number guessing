@@ -1,0 +1,95 @@
+import random
+from timeit import default_timer as timer
+
+#Block for easy difficulty
+def easy():
+    print ('Easy Mode','\n')  
+  #Generates inital number, step value, and upper limit
+    num_sequence = 5
+    numbers = random.randint(1,101)
+    step = random.randint(1,20)
+  #Accumulates and prints all but last number in sequence
+    for num_generated in range (1, num_sequence):
+        print(numbers)
+        numbers = numbers + step
+  #import and start timer
+    from timeit import default_timer as timer
+    start = timer()
+  #Sets tries allowed and subtracts wrong attempts
+    guesses = 3
+    while guesses > 0:
+        user_num = int(input('Next Number: '))
+        guesses = guesses - 1
+        if user_num != numbers:
+            if guesses == 0:
+                break
+            else:
+                print('Try Again (Attempts Remaining:', guesses,')')              
+        if user_num == numbers:
+            break
+  #Prints appropriate message based on game results
+    end = timer()
+    if user_num == numbers:
+        print ('\n')
+        print ('Correct')
+        print ('Time Elapsed:',format(end-start,'.2f'),'seconds','\n')
+    if user_num != numbers:
+        print ('\n')
+        print ('Attempts Exceeded: The answer was',numbers)
+        print ('Time Elapsed:',format(end-start,'.2f'),'seconds','\n')
+        
+
+#block for hard difficulty (same as above, sequence size changed to 4)
+def hard():
+    print ('Hard Mode','\n')
+    num_sequence = 4
+    numbers = random.randint(1,101)
+    step = random.randint(1,20)
+    for num_generated in range (1, num_sequence):
+        print(numbers)
+        numbers = numbers + step
+    guesses = 3
+    from timeit import default_timer as timer
+    start = timer()
+    while guesses > 0:
+        user_num = int(input('Next Number: '))
+        guesses = guesses - 1
+        if user_num != numbers:
+            if guesses == 0:
+                break
+            else:
+                print('Try Again (Attempts Remaining:', guesses,')')              
+        if user_num == numbers:
+            break
+    end = timer()                 
+    if user_num == numbers:
+        print ('\n')
+        print ('Correct')
+        print ('Time Elapsed:',format(end-start,'.2f'),'seconds','\n')
+    if user_num != numbers:
+        print ('\n')
+        print ('Attempts Exceeded: The answer was',numbers)
+        print ('Time Elapsed:',format(end-start,'.2f'),'seconds','\n')
+
+#main program function and difficulty selection
+def main():
+    print('-----------------------------------------------')
+    print('Please choose a difficulty.')
+    difficulty = str(input('(e)asy |(h)ard: '))
+    print('-----------------------------------------------')
+    if difficulty == 'easy' or difficulty == 'e':
+         easy()
+    elif difficulty == 'hard' or difficulty == 'h':
+         hard()
+
+#block for replay selection
+replay = 'y'
+while replay == 'y' or replay == 'yes':
+    main()
+    replay = input('Play again? (y)es|(n)o: ',)
+    print ('\n')
+    if replay == 'n'or replay == 'no':
+        print('-----------------------------------------------')
+        print('Goodbye!')
+        print('-----------------------------------------------')
+        break
