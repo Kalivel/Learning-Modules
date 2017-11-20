@@ -1,2 +1,2 @@
 # Learning-Modules
-Inconsequential programs made in the course of learning Python
+Small programs I've made in the course of classwork and self-guided learning.
